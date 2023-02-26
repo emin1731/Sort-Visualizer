@@ -78,7 +78,11 @@ export default class Header extends Component {
                 <Container fluid className='nav-container'>
                     <Navbar light expand="md">
                         <NavbarBrand href="/">
-                            <HeaderLogo>Logo</HeaderLogo>
+                            <HeaderLogo>
+                                {/* <Link to=> */}
+                                    Logo
+                                {/* </Link>/ */}
+                                </HeaderLogo>
                         </NavbarBrand>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>

@@ -28,16 +28,16 @@ export default class MainPage extends Component {
         }
     }
     onItemSelected= (id) => {
-        console.log()
+        console.log(id)
     }
 
     renderCards = (arr) => {
         return arr.map((item, id) => {
             return(
                     <Col key={id}>
-                        {/* <Link to={item.route} key={id}> */}
-                            <ItemCard field={item.name} onItemSelected={this.onItemSelected}/>   
-                        {/* </Link> */}
+                        <Link to={item.route} key={id}>
+                            <ItemCard field={item.name} onItemSelected={() => this.props.onItemSelected(id)}/>   
+                        </Link>
                     
                     </Col>
             )

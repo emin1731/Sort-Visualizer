@@ -45,26 +45,31 @@ const data = [
   }
 ]
 
-
+const DemoClick = (id) => {
+  console.log(id)
+}
 
 const router = createBrowserRouter([
   {
     path: "/", 
-    element: <MainPage data={data}/>,
+    element: <MainPage data={data} onItemSelected={DemoClick}/>,
     errorElement: <div>Error 404</div>,
   },
   {
-    path: "alg",
+    path: data[0].route,
     element: <AlgorithmPage key={123} name={data[0].name} description={data[0].description} complexity={data[0].complexity}/>
   },
   {
-    path: "alg2",
-    element: <div>algorithm 2</div>,
-    errorElement: <div>Error 404</div>,
-    // element: <AlgorithmPage key={123} name={data[0].name} description={data[0].description} complexity={data[0].complexity}/>,
+    path: data[1].route,
+    element: <AlgorithmPage key={123} name={data[1].name} description={data[1].description} complexity={data[1].complexity}/>
+  },
+  {
+    path: data[2].route,
+    element: <AlgorithmPage key={123} name={data[2].name} description={data[2].description} complexity={data[2].complexity}/>
   }
   
 ])
+
 
 
 function App() {

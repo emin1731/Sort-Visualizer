@@ -26,14 +26,17 @@ const SortCol = styled.div`
 
 
 export default class AlgorithmDisplay extends Component {
-    sortArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
     renderArray() {
-        return this.sortArray.map((item, id) => {
+        let arr = this.props.array
+
+        
+        return arr.map((item, id) => {
             return(
-                <SortCol key={id} width={this.sortArray.length +'%'} height={item/this.sortArray.length *100 +'%'}>{item}</SortCol>
+                <SortCol key={id} width={arr.length +'%'} height={item/arr.length *100 +'%'}>{item}</SortCol>
             )
         })
     }
+
     render() {
         const res = this.renderArray(this.sortArray)
         return(

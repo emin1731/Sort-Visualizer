@@ -6,12 +6,7 @@ import AlgorithmDisplay from '../../components/algorithm-display/algorithm-displ
 import ComplexityDisplay from '../../components/complexity-display/complexity-display';
 import Description from '../../components/description/description';
 
-// const Description = styled.div`
-//     height: 500px;
-//     background-color: #393E46;
-//     border-radius: 10px;
-//     padding: 20px;
-// `
+
 const ComplexityView = styled.div`
     height: 400px;
     background-color: #393E46;
@@ -38,13 +33,34 @@ const ControlButton = styled.button`
 
 
 export default class AlgorithmPage extends Component {
+    state = {
+        sortArray: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],
 
-    onShuffleArray() {
-        console.log('Control button detected')
     }
+
+
+    onShuffleArray(arr) {
+        let len = arr.length
+        console.log(len)
+        
+        for(let i = len - 1; i > 0; i--) {
+            setTimeout(() => {
+                this.setState(({sortArray}) => {
+                let j = Math.floor(Math.random() * (i + 1));
+                let newlist = [...sortArray];
+                [newlist[i], newlist[j]] = [newlist[j], newlist[i]];
+                return { sortArray: newlist}
+                })
+            }, i * 50);
+        }
+    }
+
     updateState() {
+        //pass
     }
-    
+    componentDidUpdate() {
+        console.log("update")
+    }
     render() {
         return(
             <Container>
@@ -52,29 +68,23 @@ export default class AlgorithmPage extends Component {
 
             <Row>
                 <Col>
-                <ControlButton onClick={this.onShuffleArray}>Start</ControlButton>
-                <ControlButton>Mix</ControlButton>
+                <ControlButton >Start</ControlButton>
+                <ControlButton onClick={() => this.onShuffleArray(this.state.sortArray)}>Mix</ControlButton>
                 <ControlButton>Step</ControlButton>
-                {/* <ArrayRange></ArrayRange> */}
+                {/* <ArrayRange></ArrayRange> */}   
                 </Col>
             </Row>
 
             <Row>
                 <Col>
-                    <AlgorithmDisplay/>
+                    <AlgorithmDisplay array={this.state.sortArray}/>
                 </Col>
             </Row>
             <Row>
               <Col lg={8}>
-                {/* <Description>
-                    Description text
-                </Description> */}
                 <Description content={this.props.description}/>
               </Col> 
               <Col>
-                {/* <ComplexityView>
-                    Complexity View
-                </ComplexityView> */}
                 <ComplexityDisplay complexity={this.props.complexity}/>
               </Col>
             </Row>

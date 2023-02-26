@@ -22,15 +22,12 @@ const Card = styled.div`
 `
 
 export default class ItemCard extends Component {
-    state = {
-        name: null
-    }
 
     render() {
         return(
            <Card 
                 className='item-card'
-                onClick={() => this.props.onItemSelected()}>
+                onClick={this.props.onItemSelected}>
             {this.props.field}
            </Card> 
         )
