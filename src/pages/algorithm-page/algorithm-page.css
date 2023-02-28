@@ -1,0 +1,18 @@
+.array-input {
+    background-color: #393E46;
+    border: none;
+    width: 100%;
+    color: #EEEEEE;
+    /* font-weight: BOZ; */
+
+}
+
+.inp {
+    width: 110px;
+    height: 45px;
+    background-color: #393E46;
+    border: none;
+    color: #EEEEEE;
+    border-radius: 10px;
+    text-align: center;
+}

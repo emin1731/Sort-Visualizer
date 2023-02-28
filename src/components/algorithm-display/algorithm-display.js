@@ -17,7 +17,7 @@ const SortCol = styled.div`
     border-radius: 5px;
     background-color: #00ADB5;
     align-self: flex-end;
-    margin: 5px;
+    margin: 1px;
     text-align: center;
 
 `
