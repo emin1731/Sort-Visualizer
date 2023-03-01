@@ -7,6 +7,7 @@ import ComplexityDisplay from '../../components/complexity-display/complexity-di
 import Description from '../../components/description/description';
 import './algorithm-page.css'
 import ArrayInput from '../../components/array-input/array-input';
+import SpeedInput from '../../components/speed-input/speed-input';
 
 
 const ComplexityView = styled.div`
@@ -35,25 +36,30 @@ const ControlButton = styled.button`
 
 
 export default class AlgorithmPage extends Component {
-    state = {
-        sortArray: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            sortArray: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],
+            speed: 50
+    
+        }
+        this.onShuffleArray = this.onShuffleArray.bind(this)
+        this.onSelectionSort = this.onSelectionSort.bind(this)
+        this.testFunc = this.testFunc.bind(this)
     }
 
 
     onShuffleArray(arr) {
         let len = arr.length
-        console.log(len)
-        
         for(let i = len - 1; i > 0; i--) {
             setTimeout(() => {
-                this.setState(({sortArray}) => {
+                this.setState(state => {
                     let j = Math.floor(Math.random() * (i + 1));
-                    let newlist = [...sortArray];
+                    let newlist = [...state.sortArray];
                     [newlist[i], newlist[j]] = [newlist[j], newlist[i]];
                     return { sortArray: newlist}
                 })
-            }, i * 50);
+            }, i * this.state.speed);
         }
     }
 
@@ -62,8 +68,8 @@ export default class AlgorithmPage extends Component {
         for(let i = 0; i < n; i++) {
             console.log(`selsort ${i}`)
             setTimeout(() => {
-                this.setState(({sortArray}) => {
-                    let newlist = [...sortArray];
+                this.setState(state => {
+                    let newlist = [...state.sortArray];
                     let min = i;
                     for(let j = i+1; j < n; j++){
                         if(newlist[j] < newlist[min]) {
@@ -77,7 +83,7 @@ export default class AlgorithmPage extends Component {
 
                     }
                 })
-            }, i * 50);
+            }, i * this.state.speed);
         }
     }
 
@@ -85,11 +91,25 @@ export default class AlgorithmPage extends Component {
         this.onShuffleArray(this.state.sortArray)
     }
     updateState() {
-        //pass
         console.log(`update state ${this.state.sortArray.length}`)
     }
-    onChangeSize(value) {
+    testFunc = (value) => {
+        
+    }
+    onChangeSize = (value) => {
         console.log(value)
+        this.setState(state => {
+            let newlist = Array.from({length: value}, (_, i) => i + 1)
+            return { sortArray: newlist}
+        })
+
+    }
+    onChangeSpeed = (value) => {
+        console.log(value)
+        this.setState(state => {
+            return {speed: value}
+        })
+        
     }
     render() {
         return(
@@ -101,19 +121,12 @@ export default class AlgorithmPage extends Component {
                 <ControlButton onClick={() => this.onSelectionSort(this.state.sortArray)}>Start</ControlButton>
                 <ControlButton onClick={() => this.onShuffleArray(this.state.sortArray)}>Mix</ControlButton>
                 <ControlButton onClick={() => this.updateState()} >Step</ControlButton>
-                {/* <input className='inp' type='number' max={30} min={5} defaultValue={20}></input> */}
-                <ArrayInput onChangeSize={() => this.updateState()} value={this.state.sortArray.length}/>
-                {/* <ArrayRange></ArrayRange> */}  
+                <ArrayInput onSubmit={this.onChangeSize} value={this.state.sortArray.length}/>
+                <SpeedInput onSubmit={this.onChangeSpeed} value={this.state.speed}/>
+                
+
                 
                 </Col>
-                {/* <Col>
-                    <InputGroup lg={3}>
-                        <Button>
-                        I‘m a button
-                        </Button>
-                        <Input />
-                    </InputGroup>
-                </Col> */}
             </Row>
 
             <Row>

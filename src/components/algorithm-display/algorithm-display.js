@@ -26,13 +26,14 @@ const SortCol = styled.div`
 
 
 export default class AlgorithmDisplay extends Component {
+    // try to make numbers visible or unvisible depending on array lenght
     renderArray() {
         let arr = this.props.array
 
         
         return arr.map((item, id) => {
             return(
-                <SortCol key={id} width={arr.length +'%'} height={item/arr.length *100 +'%'}>{item}</SortCol>
+                <SortCol key={id} width={arr.length +'%'} height={item/arr.length *100 +'%'}></SortCol>
             )
         })
     }

@@ -1,7 +1,7 @@
 import React, {Component, useState} from 'react'
 import styled from 'styled-components'
 
-const ArrInput = styled.input`
+const FormInput = styled.input`
     width: 150px;
     height: 45px;
     color: #EEEEEE;
@@ -18,7 +18,7 @@ const ArrInput = styled.input`
       }
 `
 
-const InputButton = styled.button`
+const SubmitButton = styled.button`
     width: 110px;
     height: 45px;
     color: #EEEEEE;
@@ -35,7 +35,7 @@ const InputButton = styled.button`
       }
 `
 
-const ArrForm = styled.form`
+const SpeedForm = styled.form`
     width: 260px;
     height: 45px;
     display: inline-block;
@@ -45,7 +45,7 @@ const ArrForm = styled.form`
 
 
 
-const ArrayInput = (props) => {
+const SpeedInput = (props) => {
     const [name, setName] = useState("")
     const handleChange = (e) => {
         setName(e.target.value)
@@ -56,21 +56,21 @@ const ArrayInput = (props) => {
     }
     return(
 
-        <ArrForm onSubmit={handleSubmit}>
-            <InputButton 
+        <SpeedForm onSubmit={handleSubmit}>
+            <SubmitButton 
                 type='submit' 
                 // onClick={this.props.onChangeSize}
-                >Change size</InputButton>
-            <ArrInput 
+                >Speed (ms)</SubmitButton>
+            <FormInput 
                 onChange={handleChange}
-                max={100} 
+                max={1000} 
                 min={10} 
                 defaultValue={props.value} 
                 type='number' 
-                name='array-input'/>
+                name='speed-input'/>
 
-        </ArrForm>
+        </SpeedForm>
 
     )
 }
-export default ArrayInput
+export default SpeedInput
