@@ -13,6 +13,7 @@ const data = [
   {
       name: "Selection Sort",
       route: "/selection-sort",
+      algorithm: 'selection_sort',
       description: "(Selection sort) Quick Sort is a sorting algorithm based on splitting the data structure in smaller partitions and sort them recursively until the data structure is sorted. This division in partitions is done based on an element, called pivot: all the elements bigger than the pivot get placed on the right side of the structure, the smaller ones to the left, creating two partitions. Next, this procedure gets applied recursively to the two partitions and so on. This partition technique based on the pivot is called Divide and conquer. It's a performant strategy also used by other sorting algorithms, such as Merge Sort.",
       complexity: {
         average: 'O(n2)',
@@ -24,6 +25,7 @@ const data = [
   {
       name: "Bubble Sort",
       route: "/bubble-sort",
+      algorithm: 'bubble_sort',
       description: "(Bubble sort) Quick Sort is a sorting algorithm based on splitting the data structure in smaller partitions and sort them recursively until the data structure is sorted. This division in partitions is done based on an element, called pivot: all the elements bigger than the pivot get placed on the right side of the structure, the smaller ones to the left, creating two partitions. Next, this procedure gets applied recursively to the two partitions and so on. This partition technique based on the pivot is called Divide and conquer. It's a performant strategy also used by other sorting algorithms, such as Merge Sort.",
       complexity: {
         average: 'O(n2)',
@@ -35,6 +37,7 @@ const data = [
   {
       name: "Merge Sort",
       route: "/merge-sort",
+      algorithm: 'merge_sort',
       description: "Merge sort Quick Sort is a sorting algorithm based on splitting the data structure in smaller partitions and sort them recursively until the data structure is sorted. This division in partitions is done based on an element, called pivot: all the elements bigger than the pivot get placed on the right side of the structure, the smaller ones to the left, creating two partitions. Next, this procedure gets applied recursively to the two partitions and so on. This partition technique based on the pivot is called Divide and conquer. It's a performant strategy also used by other sorting algorithms, such as Merge Sort.",
       complexity: {
         average: 'O(n2)',
@@ -57,30 +60,34 @@ const router = createBrowserRouter([
   },
   {
     path: data[0].route,
-    element: <AlgorithmPage key={123} name={data[0].name} description={data[0].description} complexity={data[0].complexity}/>
+    element: <AlgorithmPage algorithm={data[0].algorithm} key={123} name={data[0].name} description={data[0].description} complexity={data[0].complexity}/>
   },
   {
     path: data[1].route,
-    element: <AlgorithmPage key={123} name={data[1].name} description={data[1].description} complexity={data[1].complexity}/>
+    element: <AlgorithmPage algorithm={data[1].algorithm} key={123} name={data[1].name} description={data[1].description} complexity={data[1].complexity}/>
   },
   {
     path: data[2].route,
-    element: <AlgorithmPage key={123} name={data[2].name} description={data[2].description} complexity={data[2].complexity}/>
+    element: <AlgorithmPage algorithm={data[2].algorithm} key={123} name={data[2].name} description={data[2].description} complexity={data[2].complexity}/>
   }
   
 ])
-
 
 
 function App() {
   return (
     <>
       <Header/>
-      {/* <MainPage data={data}/> */}
-      {/* <AlgorithmPage name={data[0].name} description={data[0].description} complexity={data[0].complexity}/> */}
       <RouterProvider router={router} />
     </>
   );
 }
 
+
+//test//test//test
+//test
+
 export default App;
+
+/* <MainPage data={data}/> */
+/* <AlgorithmPage name={data[0].name} description={data[0].description} complexity={data[0].complexity}/> */

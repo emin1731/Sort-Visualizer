@@ -10,46 +10,27 @@ import ArrayInput from '../../components/array-input/array-input';
 import SpeedInput from '../../components/speed-input/speed-input';
 
 
-const ComplexityView = styled.div`
-    height: 400px;
-    background-color: #393E46;
-    border-radius: 10px;
-    padding: 20px;
-
-`
-const ControlButton = styled.button`
-    width: 110px;
-    height: 45px;
-    color: #EEEEEE;
-    background-color: #393E46;
-    border-radius: 10px;
-    border: none;
-    margin:12px;
-    margin-left: 0;
-    font-size: 16px;
-    cursor: pointer;
-    &:hover {
-        background-color: #31353c;
-        transition: 0.2s;
-      }
-`
-
-
 export default class AlgorithmPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
             sortArray: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],
-            speed: 50
+            speed: 50,
+            algorithm: props.algorithm
     
+        }
+        this.alg = {
+            selection_sort: this.onSelectionSort,
+            bubble_sort: this.onBubbleSort,
+            test: this.testFunc
         }
         this.onShuffleArray = this.onShuffleArray.bind(this)
         this.onSelectionSort = this.onSelectionSort.bind(this)
-        this.testFunc = this.testFunc.bind(this)
+
     }
 
 
-    onShuffleArray(arr) {
+    onShuffleArray = (arr) => {
         let len = arr.length
         for(let i = len - 1; i > 0; i--) {
             setTimeout(() => {
@@ -63,8 +44,8 @@ export default class AlgorithmPage extends Component {
         }
     }
 
-    onSelectionSort(inputArr) {
-        let n = inputArr.length;
+    onSelectionSort = (arr) => {
+        let n = arr.length;
         for(let i = 0; i < n; i++) {
             console.log(`selsort ${i}`)
             setTimeout(() => {
@@ -87,14 +68,37 @@ export default class AlgorithmPage extends Component {
         }
     }
 
+    onBubbleSort = (arr) => {
+        let n = arr.length;
+        for(let i = 0; i < n - 1; i++) {
+            console.log('firts loop number:', i)
+            setTimeout(() => {
+            for(let j = 0; j < n - i - 1; j++) {
+                setTimeout(() => {
+                    this.setState(state => {
+                        console.log('second loop', j)
+                        let newlist = [...state.sortArray];
+                        if(newlist[j] > newlist[j+1]) {
+                                [newlist[j], newlist[j + 1]] = [newlist[j + 1], newlist[j]]
+                                return { sortArray: newlist}  
+                            }
+                    })
+                }, i * this.state.speed)
+            }
+        }, i * this.state.speed)
+        }
+    }
+    updateState = (val) => {
+        console.log(val)
+        let d = 'selection_sort'
+        console.log(val)
+        // this.alg.algorithm(this.state.sortArray)
+        // this.alg.selection_sort(this.state.sortArray)   // error algorithm-page.js:90 Uncaught TypeError: Cannot read properties of undefined (reading 'speed')
+        //make implementation by searching match between props and alg object
+        // this.alg.test('hello')
+    }
     componentDidMount() {
         this.onShuffleArray(this.state.sortArray)
-    }
-    updateState() {
-        console.log(`update state ${this.state.sortArray.length}`)
-    }
-    testFunc = (value) => {
-        
     }
     onChangeSize = (value) => {
         console.log(value)
@@ -120,7 +124,8 @@ export default class AlgorithmPage extends Component {
                 <Col>
                 <ControlButton onClick={() => this.onSelectionSort(this.state.sortArray)}>Start</ControlButton>
                 <ControlButton onClick={() => this.onShuffleArray(this.state.sortArray)}>Mix</ControlButton>
-                <ControlButton onClick={() => this.updateState()} >Step</ControlButton>
+                {/* <ControlButton onClick={() => this.updateState(this.state.algorithm)} >Step</ControlButton> */}
+                {/* <ControlButton onClick={() => this.onBubbleSort(this.state.sortArray)} >Bubble</ControlButton> */}
                 <ArrayInput onSubmit={this.onChangeSize} value={this.state.sortArray.length}/>
                 <SpeedInput onSubmit={this.onChangeSpeed} value={this.state.speed}/>
                 
@@ -147,3 +152,29 @@ export default class AlgorithmPage extends Component {
         )
     }
 }
+
+
+const ComplexityView = styled.div`
+    height: 400px;
+    background-color: #393E46;
+    border-radius: 10px;
+    padding: 20px;
+
+`
+const ControlButton = styled.button`
+    width: 110px;
+    height: 45px;
+    color: #EEEEEE;
+    background-color: #393E46;
+    border-radius: 10px;
+    border: none;
+    margin:12px;
+    margin-left: 0;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover {
+        background-color: #31353c;
+        transition: 0.2s;
+      }
+`
+

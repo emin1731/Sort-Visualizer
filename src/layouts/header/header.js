@@ -31,6 +31,7 @@ const HeaderLogo = styled.div`
     font-size: 24px;
     font-weight: bold;
     margin: 0 10px;
+    margin-left: 50px;
     &:hover {
         color: #bfbfbf;
         transition: 0.2s;
@@ -80,7 +81,7 @@ export default class Header extends Component {
                         <NavbarBrand href="/">
                             <HeaderLogo>
                                 {/* <Link to=> */}
-                                    Logo
+                                    Algorithms
                                 {/* </Link>/ */}
                                 </HeaderLogo>
                         </NavbarBrand>

@@ -63,7 +63,7 @@ const ArrayInput = (props) => {
                 >Change size</InputButton>
             <ArrInput 
                 onChange={handleChange}
-                max={100} 
+                max={300} 
                 min={10} 
                 defaultValue={props.value} 
                 type='number' 
