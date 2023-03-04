@@ -20,8 +20,14 @@ export default class AlgorithmPage extends Component {
     
         }
         this.alg = {
-            selection_sort: this.onSelectionSort,
-            bubble_sort: this.onBubbleSort,
+            // selection: this.onSelectionSort(this.state.sortArray),
+            selection: () => {
+                this.onSelectionSort(this.state.sortArray)
+                // alert('h/ello')
+            },
+            bubble: () => {
+                this.onBubbleSort(this.state.sortArray)
+            },
             test: this.testFunc
         }
         this.onShuffleArray = this.onShuffleArray.bind(this)
@@ -88,14 +94,13 @@ export default class AlgorithmPage extends Component {
         }, i * this.state.speed)
         }
     }
-    updateState = (val) => {
-        console.log(val)
-        let d = 'selection_sort'
-        console.log(val)
-        // this.alg.algorithm(this.state.sortArray)
-        // this.alg.selection_sort(this.state.sortArray)   // error algorithm-page.js:90 Uncaught TypeError: Cannot read properties of undefined (reading 'speed')
-        //make implementation by searching match between props and alg object
-        // this.alg.test('hello')
+    get(object, path, defval = null) {
+        if (typeof path === "string") path = path.split(".");
+        return path.reduce((xs, x) => (xs && xs[x] ? xs[x] : defval), object);
+    }
+    runAlgorithm = () => {
+        let name = this.state.algorithm
+        this.get(this.alg, name)()
     }
     componentDidMount() {
         this.onShuffleArray(this.state.sortArray)
@@ -122,9 +127,9 @@ export default class AlgorithmPage extends Component {
 
             <Row>
                 <Col>
-                <ControlButton onClick={() => this.onSelectionSort(this.state.sortArray)}>Start</ControlButton>
+                <ControlButton onClick={() => this.runAlgorithm()}>Start</ControlButton>
                 <ControlButton onClick={() => this.onShuffleArray(this.state.sortArray)}>Mix</ControlButton>
-                {/* <ControlButton onClick={() => this.updateState(this.state.algorithm)} >Step</ControlButton> */}
+                {/* <ControlButton onClick={} >Step</ControlButton> */}
                 {/* <ControlButton onClick={() => this.onBubbleSort(this.state.sortArray)} >Bubble</ControlButton> */}
                 <ArrayInput onSubmit={this.onChangeSize} value={this.state.sortArray.length}/>
                 <SpeedInput onSubmit={this.onChangeSpeed} value={this.state.speed}/>
