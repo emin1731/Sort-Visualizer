@@ -1,24 +1,7 @@
 import React, {Component} from 'react';
-import styled from 'styled-components'
-import Header from '../../layouts/header/header';
 import ItemCard from '../../components/item-card/item-card';
 import { Col, Container, Row } from 'reactstrap';
 import {Link} from 'react-router-dom'
-
-// const data = [
-//     {
-//         name: "Selection Sort",
-//         route: "/name-of-num-one",
-//     },
-//     {
-//         name: "Bubble Sort",
-//         route: "/name-of-num-two",
-//     },
-//     {
-//         name: "Merge Sort",
-//         route: "/name-of-num-three",
-//     }
-// ]
 
 export default class MainPage extends Component {
     constructor(props) {
@@ -34,11 +17,10 @@ export default class MainPage extends Component {
     renderCards = (arr) => {
         return arr.map((item, id) => {
             return(
-                    <Col key={id}>
+                    <Col key={id} sm='4'>
                         <Link to={item.route} key={id}>
                             <ItemCard field={item.name} onItemSelected={() => this.props.onItemSelected(id)}/>   
                         </Link>
-                    
                     </Col>
             )
         })
@@ -47,9 +29,8 @@ export default class MainPage extends Component {
         const cards = this.renderCards(this.state.data)
         return(
             <Container>
-                {/* <Header/> */}
-
-                <Row className='justify-content-around'>
+                <h1>Sorting algorithms</h1>
+                <Row>
                     {cards}
                 </Row>
             </Container>

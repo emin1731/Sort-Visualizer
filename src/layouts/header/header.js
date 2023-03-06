@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Link from 'react-router-dom'
 import styled from 'styled-components'
 import {
     Collapse,
@@ -8,12 +7,63 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    Container,
+    Container
 } from "reactstrap";
 import './header.css'
 
-  
+
+
+export default class Header extends Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          isOpen: false
+        };
+    
+        this.toggle = this.toggle.bind(this);
+      }
+      toggle() {
+        this.setState({
+          isOpen: !this.state.isOpen
+        });
+      }
+
+    render() {
+        return(
+            <div>
+                <Container fluid className='nav-container'>
+                    <Navbar light expand="md">
+                        <NavbarBrand href="/">
+                            <HeaderLogo>Algorithms</HeaderLogo>
+                        </NavbarBrand>
+                        <NavbarToggler onClick={this.toggle}/>
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <HeaderInput  
+                                        type='text'
+                                        placeholder='Search posts'/>
+                                </NavItem>
+                                {/* <NavItem>
+                                        <NavBarLink>Components</NavBarLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavBarLink href="/components/" >Components</NavBarLink>
+                                </NavItem> */}
+                            </Nav>
+                        </Collapse>
+                        
+                    </Navbar>
+                </Container>
+            </div>
+
+        )
+
+    }
+}
+
+
 
 const HeaderInput = styled.input`
     width:250px;
@@ -49,68 +99,3 @@ const NavBarLink = styled.a`
         transition: 0.2s;
       }
 `
-
-
-
-
-
-
-export default class Header extends Component {
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          isOpen: false
-        };
-    
-        this.toggle = this.toggle.bind(this);
-      }
-    
-      toggle() {
-        this.setState({
-          isOpen: !this.state.isOpen
-        });
-      }
-    
-
-    render() {
-        return(
-            <div>
-                <Container fluid className='nav-container'>
-                    <Navbar light expand="md">
-                        <NavbarBrand href="/">
-                            <HeaderLogo>
-                                {/* <Link to=> */}
-                                    Algorithms
-                                {/* </Link>/ */}
-                                </HeaderLogo>
-                        </NavbarBrand>
-                        <NavbarToggler onClick={this.toggle}/>
-                        <Collapse isOpen={this.state.isOpen} navbar>
-                            <Nav className="ml-auto" navbar>
-                                <NavItem>
-                                    <HeaderInput  
-                                        type='text'
-                                        placeholder='Search posts'/>
-
-                                </NavItem>
-                                <NavItem>
-                                    {/* <Link> */}
-                                        <NavBarLink>Components</NavBarLink>
-                                    {/* </Link> */}
-                                </NavItem>
-                                <NavItem>
-                                    <NavBarLink href="/components/" >Components</NavBarLink>
-                                </NavItem>
-                            </Nav>
-                        </Collapse>
-                        
-                    </Navbar>
-                </Container>
-            </div>
-
-        )
-
-    }
-}
-// export default Header

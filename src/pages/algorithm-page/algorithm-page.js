@@ -20,15 +20,13 @@ export default class AlgorithmPage extends Component {
     
         }
         this.alg = {
-            // selection: this.onSelectionSort(this.state.sortArray),
             selection: () => {
                 this.onSelectionSort(this.state.sortArray)
-                // alert('h/ello')
             },
             bubble: () => {
                 this.onBubbleSort(this.state.sortArray)
             },
-            test: this.testFunc
+
         }
         this.onShuffleArray = this.onShuffleArray.bind(this)
         this.onSelectionSort = this.onSelectionSort.bind(this)
@@ -94,6 +92,11 @@ export default class AlgorithmPage extends Component {
         }, i * this.state.speed)
         }
     }
+
+    onMergeSort = (arr) => {
+        
+    }
+
     get(object, path, defval = null) {
         if (typeof path === "string") path = path.split(".");
         return path.reduce((xs, x) => (xs && xs[x] ? xs[x] : defval), object);
