@@ -64,7 +64,7 @@ const SpeedInput = (props) => {
             <FormInput 
                 onChange={handleChange}
                 max={1000} 
-                min={10} 
+                min={1} 
                 defaultValue={props.value} 
                 type='number' 
                 name='speed-input'/>

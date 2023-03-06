@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
+import DisplayBar from '../display-bar/display-bar'
 
 
 const Display = styled.div`
@@ -14,32 +15,38 @@ const Display = styled.div`
 const SortCol = styled.div`
     width: ${props => props.width || '10px'};
     height: ${props => props.height || '10px'};
+    background-color: ${props => props.color};
     border-radius: 5px;
-    background-color: #00ADB5;
     align-self: flex-end;
     margin: 1px;
     text-align: center;
-
+    
 `
 
 
 
-
-export default class AlgorithmDisplay extends Component {
+const  AlgorithmDisplay = ({array, colorKey,}) => {
     // try to make numbers visible or unvisible depending on array lenght
-    renderArray() {
-        let arr = this.props.array
+    const colors = ['#3d5af1', '#ff304f', '#83e85a'];
+    
+    // let ColColor = {
+    //     background: colors[colorKey]
+    // }
 
-        
+    const renderArray = (arr) => {
         return arr.map((item, id) => {
             return(
-                <SortCol key={id} width={arr.length +'%'} height={item/arr.length *100 +'%'}></SortCol>
+                <DisplayBar 
+                    key={id} 
+                    width={arr.length +'%'} 
+                    height={item/arr.length *100 +'%'} 
+                    colorKey={colorKey[id]}
+                    ></DisplayBar>
             )
         })
     }
 
-    render() {
-        const res = this.renderArray(this.sortArray)
+        const res = renderArray(array)
         return(
             <>
             <Display>
@@ -49,5 +56,6 @@ export default class AlgorithmDisplay extends Component {
             </Display>
             </>
         )
-    }
+
 }
+export default AlgorithmDisplay
