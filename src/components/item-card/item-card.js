@@ -9,27 +9,39 @@ const Card = styled.div`
     background-color: #393E46;
     border-radius: 10px;
     padding: 0 20px;
-    padding-top: 10px;
+    padding-top: 15px;
     margin:10px;
-    color: #EEEEEE;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
+    
     &:hover {
         background-color: #31353c;
         transition: 0.2s;
       }
 `
 
-export default class ItemCard extends Component {
+const Title = styled.p`
+    color: #EEEEEE;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 5px;
+`
+const Complex = styled.p`
+    margin: 0; 
+    font-size: 14px;
+    color: #b4b4b4;
+    font-weight: bold;
+`
 
-    render() {
+const ItemCard = ({onItemSelected, field}) => {
         return(
            <Card 
                 className='item-card'
-                onClick={this.props.onItemSelected}>
-            {this.props.field}
+                onClick={onItemSelected}>
+            <Title>{field}</Title> 
+
+            <Complex>logarithmic</Complex>
            </Card> 
         )
-    }
 }
+export default ItemCard

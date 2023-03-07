@@ -8,9 +8,12 @@ body {
   background-color: #222831;
   color: #EEEEEE !important;
   font-size: 18px;
-
+  
 }
 
+a {
+  text-decoration: none;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

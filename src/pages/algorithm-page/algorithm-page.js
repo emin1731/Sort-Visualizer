@@ -12,6 +12,8 @@ import SpeedInput from '../../components/speed-input/speed-input';
 
 // Algorithms
 import BubbleSort from '../../algorithms/bubble-sort';
+import SelectionSort from '../../algorithms/selection-sort';
+import MergeSort from '../../algorithms/merge-sort';
 
 export default class AlgorithmPage extends Component {
     constructor(props) {
@@ -29,12 +31,20 @@ export default class AlgorithmPage extends Component {
     
         }
         this.alg = {
-            selection: () => {
-                this.onSelectionSort(this.state.array)
+            selection: (array, position, steps, colors) => {
+                // this.onSelectionSort(this.state.array)
+                SelectionSort(array, position, steps, colors)
             },
-            bubble: () => {
-                this.onBubbleSort(this.state.array)
+            bubble: (array, position, steps, colors) => {
+                // this.onBubbleSort(this.state.array)
+                BubbleSort(array, position, steps, colors)
             },
+            merge: (array, position, steps, colors) => {
+                MergeSort(array, position, steps, colors)
+            },
+            test: (fir, sec) => {
+                this.test(fir, sec)
+            }
         }
     }
     clearTimeouts = () => {
@@ -76,7 +86,9 @@ export default class AlgorithmPage extends Component {
 		let steps = this.state.steps.slice();
 		let colors = this.state.colors.slice();
 
-		BubbleSort(array, 0, steps, colors);
+		// BubbleSort(array, 0, steps, colors);
+        // SelectionSort(array, 0, steps, colors);
+        this.runAlgorithm(array, 0, steps, colors)
 		this.setState({
 			steps: steps,
 			colors: colors,
@@ -109,9 +121,10 @@ export default class AlgorithmPage extends Component {
         if (typeof path === "string") path = path.split(".");
         return path.reduce((xs, x) => (xs && xs[x] ? xs[x] : defval), object);
     }
-    runAlgorithm = () => {
+    runAlgorithm = (array, position, steps, colors) => {
         let name = this.state.algorithm
-        this.get(this.alg, name)()
+        // let name = 'test'
+        this.get(this.alg, name)(array, position, steps, colors)
     }
     componentDidMount () {
         this.onChangeSize(this.state.size)
@@ -137,11 +150,12 @@ export default class AlgorithmPage extends Component {
         })
         
     }
-    test = () => {
-        console.log(this.state.size)
-        console.log(this.state.array)
-        console.log(this.state.colorKey)
-        console.log(this.state.colors)
+    test = (val, sec) => {
+        console.log(val)
+        console.log(sec)
+        // console.log(this.state.array)
+        // console.log(this.state.colorKey)
+        // console.log(this.state.colors)
     } 
     render() {
         return(
@@ -150,12 +164,12 @@ export default class AlgorithmPage extends Component {
 
             <Row>
                 <Col>
-                <ControlButton onClick={() => this.runAlgorithm()}>Start</ControlButton>
-                <ControlButton onClick={() => this.onShuffleArray(this.state.array)}>Mix</ControlButton>
-                <ControlButton onClick={this.generateArray} >Step</ControlButton>
-                <ControlButton onClick={() => this.handleStart()} >handle</ControlButton>
-                <ControlButton onClick={() => this.test()} >log</ControlButton>
-                <ControlButton onClick={() => this.clearColorKey()} >color</ControlButton>
+                <ControlButton onClick={() => this.handleStart()} >Start</ControlButton>
+                <ControlButton onClick={this.generateArray} >Mix</ControlButton>
+                {/* <ControlButton onClick={() => this.runAlgorithm()}>Start</ControlButton> */}
+                {/* <ControlButton onClick={() => this.onShuffleArray(this.state.array)}>Mix</ControlButton> */}
+                {/* <ControlButton onClick={() => this.test()} >log</ControlButton> */}
+                {/* <ControlButton onClick={() => this.clearColorKey()} >color</ControlButton> */}
                 <ArrayInput onSubmit={this.onChangeSize} value={this.state.size}/>
                 <SpeedInput onSubmit={this.onChangeSpeed} value={this.state.speed}/>
                 

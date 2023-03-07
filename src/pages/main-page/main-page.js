@@ -17,7 +17,7 @@ export default class MainPage extends Component {
     renderCards = (arr) => {
         return arr.map((item, id) => {
             return(
-                    <Col key={id} sm='4'>
+                    <Col key={id} sm='12' md='6' lg='4'>
                         <Link to={item.route} key={id}>
                             <ItemCard field={item.name} onItemSelected={() => this.props.onItemSelected(id)}/>   
                         </Link>

@@ -16,9 +16,10 @@ export default class Description extends Component {
         return(
             <Desc>
                 <h2>Description</h2>
-                <div className='description'>
+                {/* <p>hello <br></br>line</p> */}
+                <p className='description'>
                     {this.props.content}
-                </div>
+                </p>
             </Desc>
         )
     }

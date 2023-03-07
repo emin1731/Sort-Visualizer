@@ -26,7 +26,7 @@ const data = [
       name: "Bubble Sort",
       route: "/bubble-sort",
       algorithm: 'bubble',
-      description: "(Bubble sort) Quick Sort is a sorting algorithm based on splitting the data structure in smaller partitions and sort them recursively until the data structure is sorted. This division in partitions is done based on an element, called pivot: all the elements bigger than the pivot get placed on the right side of the structure, the smaller ones to the left, creating two partitions. Next, this procedure gets applied recursively to the two partitions and so on. This partition technique based on the pivot is called Divide and conquer. It's a performant strategy also used by other sorting algorithms, such as Merge Sort.",
+      description: "Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
       complexity: {
         average: 'O(n2)',
         best_case: 'O(n)',
@@ -38,13 +38,49 @@ const data = [
       name: "Merge Sort",
       route: "/merge-sort",
       algorithm: 'merge',
-      description: "Merge sort Quick Sort is a sorting algorithm based on splitting the data structure in smaller partitions and sort them recursively until the data structure is sorted. This division in partitions is done based on an element, called pivot: all the elements bigger than the pivot get placed on the right side of the structure, the smaller ones to the left, creating two partitions. Next, this procedure gets applied recursively to the two partitions and so on. This partition technique based on the pivot is called Divide and conquer. It's a performant strategy also used by other sorting algorithms, such as Merge Sort.",
+      description: `Merge sort is a sorting algorithm that works by dividing an array into smaller subarrays, sorting each subarray, and then merging the sorted subarrays back together to form the final sorted array.  In simple terms, we can say that the process of merge sort is to divide the array into two halves, sort each half, and then merge the sorted halves back together. This process is repeated until the entire array is sorted. One thing that you might wonder is what is the specialty of this algorithm. We already have a number of sorting algorithms then why do we need this algorithm? One of the main advantages of merge sort is that it has a time complexity of O(n log n), which means it can sort large arrays relatively quickly. It is also a stable sort, which means that the order of elements with equal values is preserved during the sort. Merge sort is a popular choice for sorting large datasets because it is relatively efficient and easy to implement. It is often used in conjunction with other algorithms, such as quicksort, to improve the overall performance of a sorting routine.`,
       complexity: {
         average: 'O(n × log n)',
         best_case: 'O(n × log n)',
         worst_case: 'O(n × log n)',
         space: 'O(1)'
       }
+  },
+  {
+    name: "Quick Sort",
+    route: "/bubble-sort",
+    algorithm: 'bubble',
+    description: "Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
+    complexity: {
+      average: 'O(n2)',
+      best_case: 'O(n)',
+      worst_case: 'O(n2)',
+      space: 'O(1)'
+    }
+  },
+  {
+    name: "Insertion Sort",
+    route: "/bubble-sort",
+    algorithm: 'bubble',
+    description: "Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
+    complexity: {
+      average: 'O(n2)',
+      best_case: 'O(n)',
+      worst_case: 'O(n2)',
+      space: 'O(1)'
+    }
+  },
+  {
+    name: "Heap Sort",
+    route: "/bubble-sort",
+    algorithm: 'bubble',
+    description: "Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
+    complexity: {
+      average: 'O(n2)',
+      best_case: 'O(n)',
+      worst_case: 'O(n2)',
+      space: 'O(1)'
+    }
   },
   
 ]
