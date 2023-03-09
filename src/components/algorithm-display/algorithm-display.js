@@ -27,7 +27,7 @@ const SortCol = styled.div`
 
 const  AlgorithmDisplay = ({array, colorKey,}) => {
     // try to make numbers visible or unvisible depending on array lenght
-    const colors = ['#3d5af1', '#ff304f', '#83e85a'];
+    // const colors = ['#3d5af1', '#ff304f', '#83e85a'];
     
     // let ColColor = {
     //     background: colors[colorKey]

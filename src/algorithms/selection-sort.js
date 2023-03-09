@@ -1,3 +1,4 @@
+import { swap } from "./helpers";
 const SelectionSort = (array, position, steps, colors) => {
 
     let colorKey = colors[colors.length - 1].slice();
@@ -27,11 +28,5 @@ const SelectionSort = (array, position, steps, colors) => {
     // return;
 };
 
-const swap = (arr, i, j) => {
-    let temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
-    return arr;
-}
 
 export default SelectionSort;

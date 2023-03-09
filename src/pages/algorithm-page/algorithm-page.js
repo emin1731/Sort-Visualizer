@@ -14,6 +14,8 @@ import SpeedInput from '../../components/speed-input/speed-input';
 import BubbleSort from '../../algorithms/bubble-sort';
 import SelectionSort from '../../algorithms/selection-sort';
 import MergeSort from '../../algorithms/merge-sort';
+import InsertionSort from '../../algorithms/insertion-sort';
+import quickSort from '../../algorithms/quick-sort';
 
 export default class AlgorithmPage extends Component {
     constructor(props) {
@@ -41,6 +43,12 @@ export default class AlgorithmPage extends Component {
             },
             merge: (array, position, steps, colors) => {
                 MergeSort(array, position, steps, colors)
+            },
+            insertion: (array, position, steps, colors) => {
+                InsertionSort(array, position, steps, colors)
+            },
+            quick: (array, position, steps, colors) => {
+                quickSort(array, position, steps, colors)
             },
             test: (fir, sec) => {
                 this.test(fir, sec)

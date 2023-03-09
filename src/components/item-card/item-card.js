@@ -33,14 +33,14 @@ const Complex = styled.p`
     font-weight: bold;
 `
 
-const ItemCard = ({onItemSelected, field}) => {
+const ItemCard = ({onItemSelected, field, complexity}) => {
         return(
            <Card 
                 className='item-card'
                 onClick={onItemSelected}>
             <Title>{field}</Title> 
 
-            <Complex>logarithmic</Complex>
+            <Complex>{complexity}</Complex>
            </Card> 
         )
 }

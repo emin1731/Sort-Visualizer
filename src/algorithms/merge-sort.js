@@ -1,3 +1,4 @@
+import { insertStep } from "./helpers";
 const MergeSort = (array, position, arraySteps, colorSteps) => {
 	if (array.length === 1) return array;
 	let mid = Math.floor(array.length / 2); // middle of array
@@ -57,9 +58,5 @@ const updateColor = (position, colorSteps, start, L, R) => {
 
 
 
-const insertStep = (arrayNew, position, arraySteps) => {
-    let currentStep = arraySteps[arraySteps.length - 1].slice();    // make copy of array
-	currentStep.splice(position, arrayNew.length, ...arrayNew); // replace part of array with new array 
-	arraySteps.push(currentStep);   // create new step
-}
+
 export default MergeSort;
