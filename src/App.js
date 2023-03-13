@@ -75,6 +75,45 @@ const data = [
       space: 'O(1)'
     }
   },
+  {
+    name: "Gnome Sort",
+    route: "/gnome-sort",
+    algorithm: 'gnome',
+    description: "(Gnome sort) Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
+    complexity: {
+      title: 'quadratic',
+      average: 'O(n2)',
+      best_case: 'O(n)',
+      worst_case: 'O(n2)',
+      space: 'O(1)'
+    }
+  },
+  {
+    name: "Shaker Sort",
+    route: "/shaker-sort",
+    algorithm: 'shaker',
+    description: "(Shaker sort) Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
+    complexity: {
+      title: 'quadratic',
+      average: 'O(n2)',
+      best_case: 'O(n)',
+      worst_case: 'O(n2)',
+      space: 'O(1)'
+    }
+  },
+  {
+    name: "Odd Even Sort",
+    route: "/odd-even-sort",
+    algorithm: 'oddeven',
+    description: "(Odd even sort) Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
+    complexity: {
+      title: 'quadratic',
+      average: 'O(n2)',
+      best_case: 'O(n)',
+      worst_case: 'O(n2)',
+      space: 'O(1)'
+    }
+  },
   // {
   //   name: "Heap Sort",
   //   route: "/heap-sort",
@@ -145,6 +184,42 @@ const router = createBrowserRouter([
                 description={data[4].description} 
                 complexity={data[4].complexity}/>
   },
+  {
+    path: data[5].route,
+    element: <AlgorithmPage 
+                algorithm={data[5].algorithm}
+                key={123} 
+                name={data[5].name} 
+                description={data[5].description} 
+                complexity={data[5].complexity}/>
+  },
+  {
+    path: data[6].route,
+    element: <AlgorithmPage 
+                algorithm={data[6].algorithm}
+                key={123} 
+                name={data[6].name} 
+                description={data[6].description} 
+                complexity={data[6].complexity}/>
+  },
+  {
+    path: data[7].route,
+    element: <AlgorithmPage 
+                algorithm={data[7].algorithm}
+                key={123} 
+                name={data[7].name} 
+                description={data[7].description} 
+                complexity={data[7].complexity}/>
+  },
+  // {
+  //   path: data[8].route,
+  //   element: <AlgorithmPage 
+  //               algorithm={data[8].algorithm}
+  //               key={123} 
+  //               name={data[8].name} 
+  //               description={data[8].description} 
+  //               complexity={data[8].complexity}/>
+  // },
   // {
   //   path: data[5].route,
   //   element: <AlgorithmPage 

@@ -16,6 +16,10 @@ import SelectionSort from '../../algorithms/selection-sort';
 import MergeSort from '../../algorithms/merge-sort';
 import InsertionSort from '../../algorithms/insertion-sort';
 import quickSort from '../../algorithms/quick-sort';
+import GnomeSort from '../../algorithms/gnome-sort';
+import ShakerSort from '../../algorithms/shaker-sort';
+import OddEvenSort from '../../algorithms/odd-even-sort';
+import HeapSort from '../../algorithms/heap-sort';
 
 export default class AlgorithmPage extends Component {
     constructor(props) {
@@ -49,6 +53,18 @@ export default class AlgorithmPage extends Component {
             },
             quick: (array, position, steps, colors) => {
                 quickSort(array, position, steps, colors)
+            },
+            gnome: (array, position, steps, colors) => {
+                GnomeSort(array, position, steps, colors)
+            },
+            shaker: (array, position, steps, colors) => {
+                ShakerSort(array, position, steps, colors)
+            },
+            oddeven: (array, position, steps, colors) => {
+                OddEvenSort(array, position, steps, colors)
+            },
+            heap: (array, position, steps, colors) => {
+                HeapSort(array, position, steps, colors)
             },
             test: (fir, sec) => {
                 this.test(fir, sec)
