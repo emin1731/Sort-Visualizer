@@ -222,24 +222,19 @@ export default class AlgorithmPage extends Component {
 }
 
 
-const ComplexityView = styled.div`
-    height: 400px;
-    background-color: #393E46;
-    border-radius: 10px;
-    padding: 20px;
 
-`
 const ControlButton = styled.button`
     width: 110px;
     height: 45px;
-    color: #EEEEEE;
-    background-color: #393E46;
+    color: ${props => props.theme.text};
+    background-color: ${props => props.theme.secondary};
     border-radius: 10px;
     border: none;
     margin:12px;
     margin-left: 0;
     font-size: 16px;
     cursor: pointer;
+    transition: 0.5s;
     &:hover {
         background-color: #31353c;
         transition: 0.2s;

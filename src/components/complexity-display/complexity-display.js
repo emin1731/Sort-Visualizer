@@ -9,9 +9,12 @@ import {
 
 const Complexity = styled.div`
     height: 400px;
-    background-color: #393E46;
+    background-color: ${props => props.theme.secondary};
+    color: ${props => props.theme.text};
     border-radius: 10px;
     padding: 20px 30px;
+    margin-bottom: 30px;
+    transition: 0.5s;
 
 `
 

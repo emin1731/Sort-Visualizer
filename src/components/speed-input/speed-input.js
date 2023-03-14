@@ -4,35 +4,28 @@ import styled from 'styled-components'
 const FormInput = styled.input`
     width: 150px;
     height: 45px;
-    color: #EEEEEE;
-    background-color: #31353c;
+    color: ${props => props.theme.text};
+    background-color: ${props => props.theme.hover};
     border-radius: 0 10px 10px 0;
     border: none;
     margin-left: 0;
     font-size: 16px;
     cursor: pointer;
     padding: 15px;
-    &:hover {
-        background-color: #31353c;
-        transition: 0.2s;
-      }
+    transition: 0.5s;
 `
 
 const SubmitButton = styled.button`
     width: 110px;
     height: 45px;
-    color: #EEEEEE;
-    background-color: #393E46;
+    color: ${props => props.theme.text};
+    background-color: ${props => props.theme.secondary};
     border-radius: 10px 0 0 10px;
     border: none;
     margin-left: 0;
     font-size: 16px;
     cursor: pointer;
-    // border: solid 2px #EEEEEE;
-    &:hover {
-        background-color: #31353c;
-        transition: 0.2s;
-      }
+    transition: 0.5s;
 `
 
 const SpeedForm = styled.form`
@@ -41,6 +34,7 @@ const SpeedForm = styled.form`
     display: inline-block;
     margin:12px;
     margin-left: 0;
+    transition: 0.5s;
 `
 
 

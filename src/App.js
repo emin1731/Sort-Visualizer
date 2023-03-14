@@ -7,6 +7,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { ThemeProvider } from 'styled-components';
+import { useState } from 'react';
+import { LightMode, DarkMode, GlobalStyle } from './theme';
+
 
 
 const data = [
@@ -233,14 +237,27 @@ const router = createBrowserRouter([
 ])
 
 
+{/* <a href="https://www.flaticon.com/free-icons/dark" title="dark icons">Dark icons created by adriansyah - Flaticon</a> */}
 
 function App() {
+
+  const [theme, setTheme] = useState('dark')
+  const toggleTheme = () => {
+    theme === 'dark' ? setTheme('light') : setTheme('dark')
+  }
+
+
+
   return (
     <>
-      <Header/>
+      <ThemeProvider theme={theme === 'dark' ? DarkMode : LightMode}>
+        <GlobalStyle/>
+      <Header onSwitchTheme={toggleTheme} iconTheme={theme}/>
       {/* <MainPage data={data}/> */}
       {/* <AlgorithmPage name={data[0].name} description={data[0].description} complexity={data[0].complexity}/> */}
       <RouterProvider router={router} />
+
+      </ThemeProvider>
     </>
   );
 }

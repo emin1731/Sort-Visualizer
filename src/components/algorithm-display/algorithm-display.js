@@ -5,23 +5,14 @@ import DisplayBar from '../display-bar/display-bar'
 
 const Display = styled.div`
     height: 500px;
-    background-color: #393E46;
+    background-color: ${props => props.theme.secondary};
     border-radius: 10px;
     padding: 20px;
     display: flex;
     margin-bottom: 30px;
+    transition: 0.5s;
     
     `
-const SortCol = styled.div`
-    width: ${props => props.width || '10px'};
-    height: ${props => props.height || '10px'};
-    background-color: ${props => props.color};
-    border-radius: 5px;
-    align-self: flex-end;
-    margin: 1px;
-    text-align: center;
-    
-`
 
 
 

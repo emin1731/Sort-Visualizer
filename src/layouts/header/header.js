@@ -7,10 +7,12 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    Container
+    Container,
+    NavbarText
 } from "reactstrap";
-import './header.css'
-
+// import './header.css'
+import lightModeImg from '../../assets/icons/light-mode-icon.png'
+import darkModeImg from '../../assets/icons/dark-mode-icon.png'
 
 
 export default class Header extends Component {
@@ -28,11 +30,14 @@ export default class Header extends Component {
           isOpen: !this.state.isOpen
         });
       }
+      switchTheme() {
+        console.log('hello theme ')
+      }
 
     render() {
         return(
             <div>
-                <Container fluid className='nav-container'>
+                <Container fluid >
                     <Navbar light expand="md">
                         <NavbarBrand href="/">
                             <HeaderLogo>Algorithms</HeaderLogo>
@@ -45,16 +50,17 @@ export default class Header extends Component {
                                         type='text'
                                         placeholder='Search posts'/>
                                 </NavItem>
-                                {/* <NavItem>
-                                        <NavBarLink>Components</NavBarLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavBarLink href="/components/" >Components</NavBarLink>
-                                </NavItem> */}
                             </Nav>
                         </Collapse>
                         
+                                {/* <NavItem> */}
+                                    <a onClick={this.props.onSwitchTheme} href={() => false}>
+                                        <img src={this.props.iconTheme === 'light' ? darkModeImg : lightModeImg} alt='theme-switch'/>
+                                    </a>
+                                {/* </NavItem> */}
+                            {/* <NavbarText>Simple Text</NavbarText> */}
                     </Navbar>
+                    <Divider/>
                 </Container>
             </div>
 
@@ -64,24 +70,34 @@ export default class Header extends Component {
 }
 
 
+const Divider = styled.div`
+    width: 100%;
+    height: 2px;
+    background-color:  ${props => props.theme.tertiary};
+    margin-bottom: 25px;
+    transition: 0.5s;
+`
+
 
 const HeaderInput = styled.input`
     width:250px;
     height:36px;
-    background-color: #393E46;
+    background-color: ${props => props.theme.secondary};
     border-radius: 10px;
     border: none;
     padding: 0 20px;
-    color: white;
     font-size: 14px;
+    transition: 0.5s;
+
 `
 
 const HeaderLogo = styled.div`
-    color: #EEEEEE;
+    color: ${props => props.theme.text};
     font-size: 24px;
     font-weight: bold;
     margin: 0 10px;
     margin-left: 50px;
+    transition: 0.5s;
     &:hover {
         color: #bfbfbf;
         transition: 0.2s;
