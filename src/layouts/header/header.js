@@ -54,9 +54,9 @@ export default class Header extends Component {
                         </Collapse>
                         
                                 {/* <NavItem> */}
-                                    <a onClick={this.props.onSwitchTheme} href={() => false}>
-                                        <img src={this.props.iconTheme === 'light' ? darkModeImg : lightModeImg} alt='theme-switch'/>
-                                    </a>
+                                    <div onClick={this.props.onSwitchTheme} >
+                                        <Theme src={this.props.iconTheme === 'light' ? darkModeImg : lightModeImg} alt='theme-switch'/>
+                                    </div>
                                 {/* </NavItem> */}
                             {/* <NavbarText>Simple Text</NavbarText> */}
                     </Navbar>
@@ -69,6 +69,11 @@ export default class Header extends Component {
     }
 }
 
+
+const Theme = styled.img`
+    width: 28px;
+    height: 28px;
+`
 
 const Divider = styled.div`
     width: 100%;

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import DisplayBar from '../display-bar/display-bar'
 
@@ -11,19 +11,17 @@ const Display = styled.div`
     display: flex;
     margin-bottom: 30px;
     transition: 0.5s;
-    
-    `
+    @media (max-width: 576px) {
+        height: 300px;
+      }
+    @media (max-width: 768px) {
+    height: 400px;
+    }
+`
 
 
 
 const  AlgorithmDisplay = ({array, colorKey,}) => {
-    // try to make numbers visible or unvisible depending on array lenght
-    // const colors = ['#3d5af1', '#ff304f', '#83e85a'];
-    
-    // let ColColor = {
-    //     background: colors[colorKey]
-    // }
-
     const renderArray = (arr) => {
         return arr.map((item, id) => {
             return(
@@ -31,8 +29,8 @@ const  AlgorithmDisplay = ({array, colorKey,}) => {
                     key={id} 
                     width={arr.length +'%'} 
                     height={item/arr.length *100 +'%'} 
-                    colorKey={colorKey[id]}
-                    ></DisplayBar>
+                    colorKey={colorKey[id]}>
+                </DisplayBar>
             )
         })
     }
@@ -41,8 +39,6 @@ const  AlgorithmDisplay = ({array, colorKey,}) => {
         return(
             <>
             <Display>
-            {/* <SortCol width='10px' height="100%"/> */}
-            {/* <SortCol width='10px' height="90%"/> */}
             {res}
             </Display>
             </>

@@ -1,8 +1,9 @@
-import React, {Component, useState} from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 
 const FormInput = styled.input`
-    width: 150px;
+    // width: 150px;
+    width: 60%;
     height: 45px;
     color: ${props => props.theme.text};
     background-color: ${props => props.theme.hover};
@@ -16,7 +17,8 @@ const FormInput = styled.input`
 `
 
 const SubmitButton = styled.button`
-    width: 110px;
+    // width: 110px;
+    width: 40%;
     height: 45px;
     color: ${props => props.theme.text};
     background-color: ${props => props.theme.secondary};
@@ -29,10 +31,11 @@ const SubmitButton = styled.button`
 `
 
 const SpeedForm = styled.form`
-    width: 260px;
+    // width: 260px;
+    width: 100%;
     height: 45px;
     display: inline-block;
-    margin:12px;
+    margin-bottom: 12px;
     margin-left: 0;
     transition: 0.5s;
 `

@@ -1,8 +1,9 @@
-import React, {Component, useState} from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 
 const ArrInput = styled.input`
-    width: 150px;
+    // width: 150px;
+    width: 60%;
     height: 45px;
     color: ${props => props.theme.text};
     background-color: ${props => props.theme.hover};
@@ -17,7 +18,8 @@ const ArrInput = styled.input`
 `
 
 const InputButton = styled.button`
-    width: 110px;
+    // width: 110px;
+    width: 40%;
     height: 45px;
     color: ${props => props.theme.text};
     background-color: ${props => props.theme.secondary};
@@ -31,10 +33,11 @@ const InputButton = styled.button`
 `
 
 const ArrForm = styled.form`
-    width: 260px;
+    // width: 260px;
+    width: 100%;
     height: 45px;
     display: inline-block;
-    margin:12px;
+    margin-bottom: 12px;
     margin-left: 0;
     transition: 0.5s;
 `

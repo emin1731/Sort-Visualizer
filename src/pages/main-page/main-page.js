@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ItemCard from '../../components/item-card/item-card';
 import { Col, Container, Row } from 'reactstrap';
 import {Link} from 'react-router-dom'
+import './main-page.css'
 
 export default class MainPage extends Component {
     constructor(props) {
@@ -31,9 +32,9 @@ export default class MainPage extends Component {
     render() {
         const cards = this.renderCards(this.state.data)
         return(
-            <Container>
+            <Container className='cont' fluid>
                 <h1>Sorting algorithms</h1>
-                <Row>
+                <Row >
                     {cards}
                 </Row>
             </Container>

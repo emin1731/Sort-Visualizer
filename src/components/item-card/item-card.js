@@ -1,16 +1,16 @@
-import React, {Component} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 // import './item-card.scss'
 
 const Card = styled.div`
     height: 150px;
+    min-width: 120px;
     width: 100%;
-    min-width: 150px;
     background-color: ${props => props.theme.secondary};
     border-radius: 10px;
     padding: 0 20px;
     padding-top: 15px;
-    margin:10px;
+    margin-bottom: 20px;
     transition: 0.5s;
     
     &:hover {

@@ -8,8 +8,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { ThemeProvider } from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LightMode, DarkMode, GlobalStyle } from './theme';
+import Footer from './layouts/footer/footer';
 
 
 
@@ -134,118 +135,51 @@ const data = [
   
 ]
 
-
-
-
-const router = createBrowserRouter([
+let arr = [
   {
     path: "/", 
     element: <MainPage data={data} />,
     errorElement: <div>Error 404</div>,
   },
-  {
-    path: data[0].route,
-    element: <AlgorithmPage 
-                algorithm={data[0].algorithm}
-                key={123} 
-                name={data[0].name} 
-                description={data[0].description} 
-                complexity={data[0].complexity}/>
-  },
-  {
-    path: data[1].route,
-    element: <AlgorithmPage 
-                algorithm={data[1].algorithm}
-                key={123} 
-                name={data[1].name} 
-                description={data[1].description} 
-                complexity={data[1].complexity}/>
-  },
-  {
-    path: data[2].route,
-    element: <AlgorithmPage 
-                algorithm={data[2].algorithm}
-                key={123} 
-                name={data[2].name} 
-                description={data[2].description} 
-                complexity={data[2].complexity}/>
-  },
-  {
-    path: data[3].route,
-    element: <AlgorithmPage 
-                algorithm={data[3].algorithm}
-                key={123} 
-                name={data[3].name} 
-                description={data[3].description} 
-                complexity={data[3].complexity}/>
-  },
-  {
-    path: data[4].route,
-    element: <AlgorithmPage 
-                algorithm={data[4].algorithm}
-                key={123} 
-                name={data[4].name} 
-                description={data[4].description} 
-                complexity={data[4].complexity}/>
-  },
-  {
-    path: data[5].route,
-    element: <AlgorithmPage 
-                algorithm={data[5].algorithm}
-                key={123} 
-                name={data[5].name} 
-                description={data[5].description} 
-                complexity={data[5].complexity}/>
-  },
-  {
-    path: data[6].route,
-    element: <AlgorithmPage 
-                algorithm={data[6].algorithm}
-                key={123} 
-                name={data[6].name} 
-                description={data[6].description} 
-                complexity={data[6].complexity}/>
-  },
-  {
-    path: data[7].route,
-    element: <AlgorithmPage 
-                algorithm={data[7].algorithm}
-                key={123} 
-                name={data[7].name} 
-                description={data[7].description} 
-                complexity={data[7].complexity}/>
-  },
-  // {
-  //   path: data[8].route,
-  //   element: <AlgorithmPage 
-  //               algorithm={data[8].algorithm}
-  //               key={123} 
-  //               name={data[8].name} 
-  //               description={data[8].description} 
-  //               complexity={data[8].complexity}/>
-  // },
-  // {
-  //   path: data[5].route,
-  //   element: <AlgorithmPage 
-  //               algorithm={data[5].algorithm}
-  //               key={123} 
-  //               name={data[5].name} 
-  //               description={data[5].description} 
-  //               complexity={data[5].complexity}/>
-  // },
-  
-])
+]
 
 
-{/* <a href="https://www.flaticon.com/free-icons/dark" title="dark icons">Dark icons created by adriansyah - Flaticon</a> */}
+let elems = data.map(item => ({
+  path: item.route,
+  element: <AlgorithmPage 
+              algorithm={item.algorithm}
+              key={123} 
+              name={item.name} 
+              description={item.description} 
+              complexity={item.complexity}/>
+}))
+console.log([...arr, ...elems])
+
+const router = createBrowserRouter([...arr, ...elems])
+
+
+// /* <a href="https://www.flaticon.com/free-icons/dark" title="dark icons">Dark icons created by adriansyah - Flaticon</a> */
 
 function App() {
 
   const [theme, setTheme] = useState('dark')
-  const toggleTheme = () => {
-    theme === 'dark' ? setTheme('light') : setTheme('dark')
-  }
 
+  const toggleTheme = () => {
+    if(theme === 'dark') {
+      setTheme('light')
+      localStorage.setItem('theme', "light")
+    }
+    else {
+      setTheme('dark')
+      localStorage.setItem('theme', 'dark')
+    }
+  }
+  useEffect(() => {
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+      setTheme(currentTheme);
+    }
+  }, []);
 
 
   return (
@@ -256,13 +190,12 @@ function App() {
       {/* <MainPage data={data}/> */}
       {/* <AlgorithmPage name={data[0].name} description={data[0].description} complexity={data[0].complexity}/> */}
       <RouterProvider router={router} />
-
+      <Footer/>
       </ThemeProvider>
     </>
   );
 }
 
-//nnn
-///
+
 
 export default App;

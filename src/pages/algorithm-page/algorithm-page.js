@@ -20,6 +20,7 @@ import GnomeSort from '../../algorithms/gnome-sort';
 import ShakerSort from '../../algorithms/shaker-sort';
 import OddEvenSort from '../../algorithms/odd-even-sort';
 import HeapSort from '../../algorithms/heap-sort';
+import Footer from '../../layouts/footer/footer';
 
 export default class AlgorithmPage extends Component {
     constructor(props) {
@@ -187,18 +188,23 @@ export default class AlgorithmPage extends Component {
             <h1>{this.props.name}</h1>
 
             <Row>
-                <Col>
-                <ControlButton onClick={() => this.handleStart()} >Start</ControlButton>
+                <Col sm='6' md='6' lg='2'>
+                    <ControlButton onClick={() => this.handleStart()} >Start</ControlButton>
+
+                </Col>
+                <Col sm='6' md='6'lg='2'>
                 <ControlButton onClick={this.generateArray} >Mix</ControlButton>
+
+                </Col>
+                <Col sm='12' md='6' lg='4'>
+                    <SpeedInput onSubmit={this.onChangeSpeed} value={this.state.speed}/>
+                </Col>
+                <Col sm='12' md='6' lg='4'>
+                    <ArrayInput onSubmit={this.onChangeSize} value={this.state.size}/>
                 {/* <ControlButton onClick={() => this.runAlgorithm()}>Start</ControlButton> */}
                 {/* <ControlButton onClick={() => this.onShuffleArray(this.state.array)}>Mix</ControlButton> */}
                 {/* <ControlButton onClick={() => this.test()} >log</ControlButton> */}
                 {/* <ControlButton onClick={() => this.clearColorKey()} >color</ControlButton> */}
-                <ArrayInput onSubmit={this.onChangeSize} value={this.state.size}/>
-                <SpeedInput onSubmit={this.onChangeSpeed} value={this.state.speed}/>
-                
-
-                
                 </Col>
             </Row>
 
@@ -215,7 +221,7 @@ export default class AlgorithmPage extends Component {
                 <ComplexityDisplay complexity={this.props.complexity}/>
               </Col>
             </Row>
-
+            {/* <Footer/> */}
             </Container>
         )
     }
@@ -224,13 +230,14 @@ export default class AlgorithmPage extends Component {
 
 
 const ControlButton = styled.button`
-    width: 110px;
+    // width: 110px;
+    width: 100%;
     height: 45px;
     color: ${props => props.theme.text};
     background-color: ${props => props.theme.secondary};
     border-radius: 10px;
     border: none;
-    margin:12px;
+    margin-bottom: 12px;
     margin-left: 0;
     font-size: 16px;
     cursor: pointer;

@@ -4,9 +4,9 @@ import './description.css'
 
 
 const Desc = styled.div`
-    height: 500px;
+    min-height: 500px;
     background-color: ${props => props.theme.secondary};
-    color: ${props => props.theme.text}
+    color: ${props => props.theme.text};
     border-radius: 10px;
     padding: 20px 30px;
     margin-bottom: 30px;
