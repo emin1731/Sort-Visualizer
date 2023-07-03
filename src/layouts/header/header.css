@@ -3,3 +3,12 @@
     color: #31353c;
 
 }
+.header-container {
+    margin: 10px 0;
+}
+
+.header-bar-container {
+    width: 80px;
+    display: flex;
+    justify-content: space-between;
+}

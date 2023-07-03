@@ -6,15 +6,22 @@ const SelectionSort = (array, position, steps, colors) => {
     for (let i = 0; i < array.length; i++) {
         let min = i
 		for (let j = i+1; j < array.length; j++) {
+            
+
             if (array[j] < array[min]) {
                 min = j
             }
             steps.push(array.slice());
+
+            colorKey[j] = 1;
             colorKey[i] = 1;
-            colorKey[min] = 1;
             colors.push(colorKey.slice());
+            colorKey[j] = 0;
             colorKey[i] = 0;
-            colorKey[min] = 0;
+
+            // colorKey[min] = 1;
+            // colors.push(colorKey.slice());
+            // colorKey[min] = 0;
             
         }
             // if (min !== i) {

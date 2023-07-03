@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ItemCard from '../../components/item-card/item-card';
+import ItemCard from '../../components/algorithm-card/algorithm-card';
 import { Col, Container, Row } from 'reactstrap';
 import {Link} from 'react-router-dom'
 import './main-page.css'
@@ -32,10 +32,16 @@ export default class MainPage extends Component {
     render() {
         const cards = this.renderCards(this.state.data)
         return(
-            <Container className='cont' fluid>
+            <Container className='main-page-container' fluid>
+                <Row className='main-page-row'>
                 <h1>Sorting algorithms</h1>
-                <Row >
                     {cards}
+                </Row>
+
+                <Row >
+                <h1>Search algorithms</h1>
+                will be soon ... 
+                    {/* {cards} */}
                 </Row>
             </Container>
         )

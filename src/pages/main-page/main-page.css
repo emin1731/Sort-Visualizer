@@ -1,6 +1,10 @@
-.cont {
+.main-page-container {
     /* min-height: 100%; */
     padding: 20px;
     margin-bottom: 100px;
     /* background-color: aliceblue; */
+}
+
+.main-page-row {
+    margin-bottom: 50px;
 }

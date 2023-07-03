@@ -1,18 +1,20 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
 import {
-    Collapse,
     Navbar,
-    NavbarToggler,
     NavbarBrand,
-    Nav,
-    NavItem,
     Container,
-    NavbarText
 } from "reactstrap";
-// import './header.css'
+import './header.css'
 import lightModeImg from '../../assets/icons/light-mode-icon.png'
 import darkModeImg from '../../assets/icons/dark-mode-icon.png'
+
+import darkVolumeIcon from '../../assets/icons/dark-volume-icon.png'
+import darkMuteIcon from '../../assets/icons/dark-mute-icon.png'
+import lightVolumeIcon from '../../assets/icons/light-volume-icon.png'
+import lightMuteIcon from '../../assets/icons/light-mute-icon.png'
+
+
 
 
 export default class Header extends Component {
@@ -35,6 +37,9 @@ export default class Header extends Component {
       }
 
     render() {
+        let volumeIcon = this.props.themeIcon === 'light' ? darkVolumeIcon : lightVolumeIcon
+        let muteIcon = this.props.themeIcon === 'light' ? darkMuteIcon : lightMuteIcon
+
         return(
             <div>
                 <Container fluid >
@@ -42,23 +47,16 @@ export default class Header extends Component {
                         <NavbarBrand href="/">
                             <HeaderLogo>Algorithms</HeaderLogo>
                         </NavbarBrand>
-                        <NavbarToggler onClick={this.toggle}/>
-                        <Collapse isOpen={this.state.isOpen} navbar>
-                            <Nav className="ml-auto" navbar>
-                                <NavItem>
-                                    <HeaderInput  
-                                        type='text'
-                                        placeholder='Search posts'/>
-                                </NavItem>
-                            </Nav>
-                        </Collapse>
                         
-                                {/* <NavItem> */}
-                                    <div onClick={this.props.onSwitchTheme} >
-                                        <Theme src={this.props.iconTheme === 'light' ? darkModeImg : lightModeImg} alt='theme-switch'/>
-                                    </div>
-                                {/* </NavItem> */}
-                            {/* <NavbarText>Simple Text</NavbarText> */}
+                        <div className='header-bar-container'>
+                            <div onClick={this.props.onSwitchSound} >
+                                <Theme src={this.props.soundIcon === 'true' ? volumeIcon : muteIcon} alt='theme-switch'/>
+                            </div>
+                            <div onClick={this.props.onSwitchTheme} >
+                                <Theme src={this.props.themeIcon === 'light' ? darkModeImg : lightModeImg} alt='theme-switch'/>
+                            </div>
+                        
+                        </div>
                     </Navbar>
                     <Divider/>
                 </Container>
@@ -83,40 +81,16 @@ const Divider = styled.div`
     transition: 0.5s;
 `
 
-
-const HeaderInput = styled.input`
-    width:250px;
-    height:36px;
-    background-color: ${props => props.theme.secondary};
-    border-radius: 10px;
-    border: none;
-    padding: 0 20px;
-    font-size: 14px;
-    transition: 0.5s;
-
-`
-
 const HeaderLogo = styled.div`
     color: ${props => props.theme.text};
     font-size: 24px;
     font-weight: bold;
     margin: 0 10px;
-    margin-left: 50px;
+
     transition: 0.5s;
     &:hover {
         color: #bfbfbf;
         transition: 0.2s;
       }
 
-`
-const NavBarLink = styled.a`
-    color: #EEEEEE;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 0 1rem;
-    &:hover {
-        color: #bfbfbf;
-        transition: 0.2s;
-      }
 `

@@ -1,4 +1,6 @@
 import { swap } from "./helpers";
+import playNote from "../pages/algorithm-page/sound";
+
 const BubbleSort = (array, position, steps, colors) => {
 
     let colorKey = colors[colors.length - 1].slice();
@@ -12,6 +14,8 @@ const BubbleSort = (array, position, steps, colors) => {
             steps.push(array.slice());
             colorKey[j] = 1;
             colorKey[j + 1] = 1;
+            // console.log(j, array.length)
+            // playNote(20000 / array.length * j, 100)
             colors.push(colorKey.slice());
             colorKey[j] = 0;
             colorKey[j + 1] = 0;

@@ -151,7 +151,9 @@ let elems = data.map(item => ({
               key={123} 
               name={item.name} 
               description={item.description} 
-              complexity={item.complexity}/>
+              complexity={item.complexity}
+
+            />
 }))
 console.log([...arr, ...elems])
 
@@ -163,6 +165,8 @@ const router = createBrowserRouter([...arr, ...elems])
 function App() {
 
   const [theme, setTheme] = useState('dark')
+  const [sound, setSound] = useState(true)
+  // localStorage.setItem('sound', true)
 
   const toggleTheme = () => {
     if(theme === 'dark') {
@@ -181,12 +185,21 @@ function App() {
     }
   }, []);
 
+  const switchSound = () => {
+    if(sound) {
+      setSound(false)
+      localStorage.setItem('sound', false)
+    } else {
+      setSound(true)
+      localStorage.setItem('sound', true)
+    }
+  }
 
   return (
     <>
       <ThemeProvider theme={theme === 'dark' ? DarkMode : LightMode}>
         <GlobalStyle/>
-      <Header onSwitchTheme={toggleTheme} iconTheme={theme}/>
+      <Header onSwitchTheme={toggleTheme} themeIcon={theme} onSwitchSound={switchSound} soundIcon={localStorage.getItem('sound')}/>
       {/* <MainPage data={data}/> */}
       {/* <AlgorithmPage name={data[0].name} description={data[0].description} complexity={data[0].complexity}/> */}
       <RouterProvider router={router} />
@@ -199,3 +212,8 @@ function App() {
 
 
 export default App;
+
+
+
+{/* <a href="https://www.flaticon.com/free-icons/speaker" title="speaker icons">Speaker icons created by Pixel perfect - Flaticon</a> */}
+{/* <a href="https://www.flaticon.com/free-icons/mute" title="mute icons">Mute icons created by Pixel perfect - Flaticon</a> */}

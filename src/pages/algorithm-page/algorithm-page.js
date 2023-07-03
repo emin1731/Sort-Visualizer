@@ -20,7 +20,9 @@ import GnomeSort from '../../algorithms/gnome-sort';
 import ShakerSort from '../../algorithms/shaker-sort';
 import OddEvenSort from '../../algorithms/odd-even-sort';
 import HeapSort from '../../algorithms/heap-sort';
-import Footer from '../../layouts/footer/footer';
+
+import playNote from './sound';
+
 
 export default class AlgorithmPage extends Component {
     constructor(props) {
@@ -34,7 +36,9 @@ export default class AlgorithmPage extends Component {
             currentStep: 0,
             speed: 50,
             size: 40,
-            algorithm: props.algorithm
+            isStopped: true,
+            algorithm: props.algorithm,
+            // isSoundOff: 
     
         }
         this.alg = {
@@ -83,29 +87,107 @@ export default class AlgorithmPage extends Component {
 	};
 
     handleStart = () => {
+        if(!this.state.isStopped) {
+            return
+        }
+        this.setState({isStopped: false})
+
+        // let timeout = null
         let steps = this.state.steps.slice();
 		let colors = this.state.colors.slice();
         // this.clearTimeouts();
 		// let timeouts = [];
+        // console.log(this.test())
 
         let i = 0;
-		while (i < steps.length - this.state.currentStep) {
-			let timeout = setTimeout(() => {
-				let currentStep = this.state.currentStep;
+
+        let interval = setInterval(() => {
+            let currentStep = this.state.currentStep;
 				this.setState({
 					array: steps[currentStep],
 					colorKey: colors[currentStep],
 					currentStep: currentStep + 1,
 				});
-				// timeouts.push(timeout);
-			}, this.state.speed * i);
-			i++;
-		}
+                // playNote(1000 / 40 * (colors[currentStep].indexOf(1) + 2), 100)
+                let isSoundOn = localStorage.getItem('sound')
+                if(isSoundOn === 'true') {
+                    // console.log(localStorage.getItem('sound'))
 
-		// this.setState({
-		// 	timeouts: timeouts,
-		// });
+                    playNote(1400 / 40 * (steps[currentStep][colors[currentStep].indexOf(1) + 1]), 100)
+
+                }
+
+                // playNote(1000 + 40 * (steps[currentStep][colors[currentStep].indexOf(1) + 1]), 100)
+                // console.log(steps[currentStep][colors[currentStep].indexOf(1) + 1])
+                i++;
+                if(this.state.isStopped) {
+                    console.log(this.state.isStopped)
+                    clearInterval(interval)
+                    this.clearColorKey()
+                    // this.setState({ currentStep: 0,  });
+                    // this.generateArray()
+                    // this.clearColorKey()
+
+                    let size = this.state.size;
+                    let arr = this.state.array.slice();
+            
+                    // for(let i = size - 1; i > 0; i--) {
+                    //     let j = Math.floor(Math.random() * (i + 1));
+                    //     [arr[i], arr[j]] = [arr[j], arr[i]];
+                    // }
+                    this.setState(
+                        {
+                            array: arr,
+                            steps: [arr],
+                            size: size,
+                            currentStep: 0,
+                        },
+                        () => this.generateSteps())
+                    
+                }
+                if((i === steps.length)) {
+                    console.log("CLEAR INT")
+                    clearInterval(interval)
+                }
+        }, this.state.speed);
+		// while (i < steps.length - this.state.currentStep) {
+        //     console.log(i, steps.length, this.state.currentStep)
+        //     // console.log(this.state.isStopped)
+        //     // return
+        //     if(this.state.isStopped) {
+        //         clearTimeout(timeout)
+        //         this.clearColorKey()
+        //         return
+        //     }
+		// 	timeout = setTimeout(() => {
+        //         // console.log(steps.length, this.state.currentStep)
+                
+		// 		let currentStep = this.state.currentStep;
+		// 		this.setState({
+		// 			array: steps[currentStep],
+		// 			colorKey: colors[currentStep],
+		// 			currentStep: currentStep + 1,
+		// 		});
+		// 		// timeouts.push(timeout);
+		// 	}, this.state.speed * i);
+        //     this.setState({timeouts: [...this.state.timouts, timeout]})
+        //     if(this.state.isStopped) {
+        //         console.log(this.state.isStopped)
+        //         this.clearTimeouts()
+        //         this.clearColorKey()
+                
+        //     }
+		// 	i++;
+		// }
+
     }
+    test = () => {
+        this.setState({isStopped: true})
+        // setTimeout(() => {
+        //     this.setState({isStopped: false})
+        // }, 2000)
+
+    };
     generateSteps = () => {
 		let array = this.state.array.slice();
 		let steps = this.state.steps.slice();
@@ -119,7 +201,15 @@ export default class AlgorithmPage extends Component {
 			colors: colors,
 		});
 	};
+    runAlgorithm = (array, position, steps, colors) => {
+        let name = this.state.algorithm
+        // let name = 'test'
+        this.get(this.alg, name)(array, position, steps, colors)
+    }
     generateArray = () => {
+        if(!this.state.isStopped) {
+            return
+        }
         // this.clearTimeouts();
         this.clearColorKey()
 
@@ -139,26 +229,21 @@ export default class AlgorithmPage extends Component {
             },
             () => this.generateSteps()
         );
-        console.log(arr);
     };
 
     get(object, path, defval = null) {
         if (typeof path === "string") path = path.split(".");
         return path.reduce((xs, x) => (xs && xs[x] ? xs[x] : defval), object);
     }
-    runAlgorithm = (array, position, steps, colors) => {
-        let name = this.state.algorithm
-        // let name = 'test'
-        this.get(this.alg, name)(array, position, steps, colors)
-    }
     componentDidMount () {
         this.onChangeSize(this.state.size)
         // await this.onShuffleArray(this.state.array)
         // this.generateArray()
     }
-
     onChangeSize = (value) => {
-        console.log(value)
+        if(!this.state.isStopped) {
+            return
+        }
         this.setState(state => {
             let newlist = Array.from({length: value}, (_, i) => i + 1)
             return { 
@@ -169,40 +254,44 @@ export default class AlgorithmPage extends Component {
         },  () => this.generateArray())
     }
     onChangeSpeed = (value) => {
-        console.log(value)
+        if(!this.state.isStopped) {
+            return
+        }
         this.setState(state => {
             return {speed: value}
         })
         
     }
-    test = (val, sec) => {
-        console.log(val)
-        console.log(sec)
-        // console.log(this.state.array)
-        // console.log(this.state.colorKey)
-        // console.log(this.state.colors)
-    } 
+    onMakeSound = () => {
+        // console.log("ARRAY", this.state.array)
+        // console.log("STEPS", this.state.steps)
+        // console.log("SIZE", this.state.size)
+        // console.log("CURRENT_STEP", this.state.currentStep)
+        playNote(1000, 200)
+    }
+    
     render() {
         return(
             <Container>
             <h1>{this.props.name}</h1>
 
             <Row>
-                <Col sm='6' md='6' lg='2'>
+                <Col xs='12' sm='12' md='12' lg='2'>
                     <ControlButton onClick={() => this.handleStart()} >Start</ControlButton>
-
                 </Col>
-                <Col sm='6' md='6'lg='2'>
-                <ControlButton onClick={this.generateArray} >Mix</ControlButton>
-
+                <Col xs='6' sm='6' md='6'lg='2'>
+                    <ControlButton onClick={() => this.test()}>Stop</ControlButton>
                 </Col>
-                <Col sm='12' md='6' lg='4'>
+                <Col xs='6' sm='6' md='6'lg='2'>
+                    <ControlButton onClick={this.generateArray} >Mix</ControlButton>
+                </Col>
+                <Col xs='12' sm='12' md='6' lg='6'>
                     <SpeedInput onSubmit={this.onChangeSpeed} value={this.state.speed}/>
                 </Col>
-                <Col sm='12' md='6' lg='4'>
+                <Col xs='12' sm='12' md='6' lg='6'>
                     <ArrayInput onSubmit={this.onChangeSize} value={this.state.size}/>
-                {/* <ControlButton onClick={() => this.runAlgorithm()}>Start</ControlButton> */}
-                {/* <ControlButton onClick={() => this.onShuffleArray(this.state.array)}>Mix</ControlButton> */}
+                
+                {/* <ControlButton onClick={() => this.onMakeSound()}>Sound</ControlButton> */}
                 {/* <ControlButton onClick={() => this.test()} >log</ControlButton> */}
                 {/* <ControlButton onClick={() => this.clearColorKey()} >color</ControlButton> */}
                 </Col>
@@ -221,7 +310,6 @@ export default class AlgorithmPage extends Component {
                 <ComplexityDisplay complexity={this.props.complexity}/>
               </Col>
             </Row>
-            {/* <Footer/> */}
             </Container>
         )
     }
@@ -230,7 +318,6 @@ export default class AlgorithmPage extends Component {
 
 
 const ControlButton = styled.button`
-    // width: 110px;
     width: 100%;
     height: 45px;
     color: ${props => props.theme.text};
@@ -243,70 +330,7 @@ const ControlButton = styled.button`
     cursor: pointer;
     transition: 0.5s;
     &:hover {
-        background-color: #31353c;
+        background-color: ${props => props.theme.hover};
         transition: 0.2s;
       }
 `
-
-// onShuffleArray = (arr) => {
-//     let len = arr.length
-//     for(let i = len - 1; i > 0; i--) {
-//         setTimeout(() => {
-//             this.setState(state => {
-//                 let j = Math.floor(Math.random() * (i + 1));
-//                 let newlist = [...state.array];
-//                 [newlist[i], newlist[j]] = [newlist[j], newlist[i]];
-//                 return { array: newlist}
-//             })
-//         }, i * this.state.speed);
-//     }
-//     this.setState({
-//         steps: [this.state.array],
-//         currentStep: 0
-//     })
-//     console.log(this.state.steps)
-// }
-
-// onSelectionSort = (arr) => {
-//     let n = arr.length;
-//     for(let i = 0; i < n; i++) {
-//         console.log(`selsort ${i}`)
-//         setTimeout(() => {
-//             this.setState(state => {
-//                 let newlist = [...state.array];
-//                 let min = i;
-//                 for(let j = i+1; j < n; j++){
-//                     if(newlist[j] < newlist[min]) {
-//                         min=j; 
-//                     }
-//                 }
-//                 if (min != i) {
-//                     // Swapping the elements
-//                     [newlist[i], newlist[min]] = [newlist[min], newlist[i]]
-//                     return { array: newlist}   
-
-//                 }
-//             })
-//         }, i * this.state.speed);
-//     }
-// }
-// onBubbleSort = (arr) => {
-//     let n = arr.length;
-//     for(let i = 0; i < n - 1; i++) {
-//         console.log('firts loop number:', i)
-//         setTimeout(() => {
-//         for(let j = 0; j < n - i - 1; j++) {
-//             setTimeout(() => {
-//                 this.setState(state => {
-//                     console.log('second loop', j)
-//                     let newlist = [...state.array];
-//                     if(newlist[j] > newlist[j+1]) {
-//                             [newlist[j], newlist[j + 1]] = [newlist[j + 1], newlist[j]]
-//                             return { array: newlist}  
-//                         }
-//                 })
-//             }, i * this.state.speed)
-//         }
-//     }, i * this.state.speed)
-//     }
-// }
