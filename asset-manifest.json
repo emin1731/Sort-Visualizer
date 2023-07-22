@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Implementation-of-algorithms/static/css/main.fafda54e.css",
+    "main.js": "/Implementation-of-algorithms/static/js/main.52aef57f.js",
+    "index.html": "/Implementation-of-algorithms/index.html",
+    "main.fafda54e.css.map": "/Implementation-of-algorithms/static/css/main.fafda54e.css.map",
+    "main.52aef57f.js.map": "/Implementation-of-algorithms/static/js/main.52aef57f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fafda54e.css",
+    "static/js/main.52aef57f.js"
+  ]
+}
