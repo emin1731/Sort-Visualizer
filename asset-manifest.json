@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Implementation-of-algorithms/static/css/main.fafda54e.css",
-    "main.js": "/Implementation-of-algorithms/static/js/main.52aef57f.js",
+    "main.js": "/Implementation-of-algorithms/static/js/main.0643b39d.js",
     "index.html": "/Implementation-of-algorithms/index.html",
     "main.fafda54e.css.map": "/Implementation-of-algorithms/static/css/main.fafda54e.css.map",
-    "main.52aef57f.js.map": "/Implementation-of-algorithms/static/js/main.52aef57f.js.map"
+    "main.0643b39d.js.map": "/Implementation-of-algorithms/static/js/main.0643b39d.js.map"
   },
   "entrypoints": [
     "static/css/main.fafda54e.css",
-    "static/js/main.52aef57f.js"
+    "static/js/main.0643b39d.js"
   ]
 }
