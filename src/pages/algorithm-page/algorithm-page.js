@@ -4,11 +4,11 @@ import styled from 'styled-components'
 import './algorithm-page.css'
 
 // Components
-import AlgorithmDisplay from '../../components/algorithm-display/algorithm-display';
-import ComplexityDisplay from '../../components/complexity-display/complexity-display';
-import Description from '../../components/description/description';
-import ArrayInput from '../../components/array-input/array-input';
-import SpeedInput from '../../components/speed-input/speed-input';
+import AlgorithmDisplay from '../../components/AlgorithmDisplay';
+import ComplexityDisplay from '../../components/ComplexityDisplay';
+import Description from '../../components/Description';
+import ArrayInput from '../../components/ArrayInput';
+import SpeedInput from '../../components/SpeedInput';
 
 // Algorithms
 import BubbleSort from '../../algorithms/bubble-sort';
@@ -279,10 +279,10 @@ export default class AlgorithmPage extends Component {
                 <Col xs='12' sm='12' md='12' lg='2'>
                     <ControlButton onClick={() => this.handleStart()} >Start</ControlButton>
                 </Col>
-                <Col xs='6' sm='6' md='6'lg='2'>
+                <Col xs='6' sm='6' md='6' lg='2'>
                     <ControlButton onClick={() => this.test()}>Stop</ControlButton>
                 </Col>
-                <Col xs='6' sm='6' md='6'lg='2'>
+                <Col xs='6' sm='6' md='6' lg='2'>
                     <ControlButton onClick={this.generateArray} >Mix</ControlButton>
                 </Col>
                 <Col xs='12' sm='12' md='6' lg='6'>

@@ -4,10 +4,8 @@ import Header from './layouts/header/header';
 import MainPage from './pages/main-page/main-page';
 import AlgorithmPage from './pages/algorithm-page/algorithm-page';
 import {
-  createBrowserRouter,
   HashRouter,
   Route,
-  RouterProvider,
   Routes,
 } from "react-router-dom";
 import { ThemeProvider } from 'styled-components';
@@ -122,46 +120,8 @@ const data = [
       space: 'O(1)'
     }
   },
-  // {
-  //   name: "Heap Sort",
-  //   route: "/heap-sort",
-  //   algorithm: 'heap',
-  //   description: "Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
-  //   complexity: {
-  //     title: 'logarithmic',
-  //     average: 'O(n2)',
-  //     best_case: 'O(n)',
-  //     worst_case: 'O(n2)',
-  //     space: 'O(1)'
-  //   }
-  // },
-  
+
 ]
-
-// let arr = [
-//   {
-//     path: "/", 
-//     element: <MainPage data={data} />,
-//     errorElement: <div>Error 404</div>,
-//   },
-// ]
-
-
-// let elems = data.map(item => ({
-//   path: item.route,
-//   element: <AlgorithmPage 
-//               algorithm={item.algorithm}
-//               key={123} 
-//               name={item.name} 
-//               description={item.description} 
-//               complexity={item.complexity}
-
-//             />
-// }))
-
-// const router = createBrowserRouter([...arr, ...elems])
-
-
 
 
 let routes = data.map(item => (
@@ -175,9 +135,6 @@ let routes = data.map(item => (
       complexity={item.complexity}/>} 
     errorElement={<div>Error 404</div>}></Route>
 ))
-
-
-
 
 
 function App() {
@@ -224,21 +181,9 @@ function App() {
           {routes}
         </Routes>
       </HashRouter>
-      {/* <MainPage data={data}/> */}
-      {/* <AlgorithmPage name={data[0].name} description={data[0].description} complexity={data[0].complexity}/> */}
-      {/* <RouterProvider router={router} /> */}
       <Footer/>
       </ThemeProvider>
     </>
   );
 }
-
-
-
 export default App;
-
-
-
-{/* <a href="https://www.flaticon.com/free-icons/speaker" title="speaker icons">Speaker icons created by Pixel perfect - Flaticon</a> */}
-{/* <a href="https://www.flaticon.com/free-icons/mute" title="mute icons">Mute icons created by Pixel perfect - Flaticon</a> */}
-// /* <a href="https://www.flaticon.com/free-icons/dark" title="dark icons">Dark icons created by adriansyah - Flaticon</a> */

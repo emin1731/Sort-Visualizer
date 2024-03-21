@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import DisplayBar from '../display-bar/display-bar'
+import DisplayBar from './DisplayBar'
 
 
 const Display = styled.div`

@@ -1,4 +1,3 @@
-import './display-bar.css'
 
 
 const DisplayBar = ({ index, height, colorKey, width }) => {
@@ -9,7 +8,12 @@ const DisplayBar = ({ index, height, colorKey, width }) => {
     let barStyle = {
 		background: colors[colorKey] || '#00ADB5',
         height: height,
-        width: width
+        width: width,
+        borderRadius: '5px',
+        alignSelf: 'flex-end',
+        margin: '1px',
+        textAlign: 'center'
+
 	};
 
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ItemCard from '../../components/algorithm-card/algorithm-card';
+import ItemCard from '../../components/AlgorithmCard';
 import { Col, Container, Row } from 'reactstrap';
 import {Link} from 'react-router-dom'
 import './main-page.css'

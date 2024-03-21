@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import './complexity-display.css'
 import {
     Table
 } from 'reactstrap'
@@ -25,6 +24,7 @@ export default class ComplexityDisplay extends Component {
                 <h2>Complexity</h2>
                 <Table 
                     className='table'
+                    style={{color: '#EEEEEE'}}
                     responsive
                     size=""
                     >
