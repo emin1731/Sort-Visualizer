@@ -1,54 +1,48 @@
-import React from 'react'
-import styled from 'styled-components'
-// import './item-card.scss'
+import React from "react";
+import styled from "styled-components";
 
 const Card = styled.div`
-    height: 150px;
-    min-width: 120px;
-    width: 100%;
-    background-color: ${props => props.theme.secondary};
-    border-radius: 10px;
-    padding: 0 20px;
-    padding-top: 15px;
-    margin-bottom: 20px;
-    transition: 0.5s;
-    
-    &:hover {
-        background-color: ${props => props.theme.hover};
-        transition: 0.2s;
-    }
-    `
-    // background-color: #393E46;
+  height: 150px;
+  min-width: 120px;
+  width: 100%;
+  background-color: ${(props) => props.theme.secondary};
+  border-radius: 10px;
+  padding: 0 20px;
+  padding-top: 15px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+
+  &:hover {
+    background-color: ${(props) => props.theme.hover};
+    transition: 0.2s;
+  }
+`;
 
 const Title = styled.p`
-    color: ${props => props.theme.text};
-    font-size: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 5px;
-    transition: 0.5s;
-`
+  color: ${(props) => props.theme.text};
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: 0.5s;
+`;
 const Complex = styled.p`
-    margin: 0; 
-    font-size: 14px;
-    color: ${props => props.theme.text_sec};
+  margin: 0;
+  font-size: 14px;
+  color: ${(props) => props.theme.text_sec};
 
-    font-weight: bold;
-    transition: 0.5s;
-`
-// color: #b4b4b4;
+  font-weight: bold;
+  transition: 0.5s;
+`;
 
+const ItemCard = ({ onItemSelected, field, complexity }) => {
+  return (
+    <Card className="item-card" onClick={onItemSelected}>
+      <Title>{field}</Title>
 
-const ItemCard = ({onItemSelected, field, complexity}) => {
-        return(
-           <Card 
-                className='item-card'
-                onClick={onItemSelected}>
-            <Title>{field}</Title> 
-
-            <Complex>{complexity}</Complex>
-           </Card> 
-        )
-}
-export default ItemCard
+      <Complex>{complexity}</Complex>
+    </Card>
+  );
+};
+export default ItemCard;
